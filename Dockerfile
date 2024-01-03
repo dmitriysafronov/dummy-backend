@@ -1,5 +1,5 @@
 # --------------> The build image
-FROM node:18.12.1 AS build
+FROM node:20.10.0 AS build
 RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 ARG NPM_TOKEN
 WORKDIR /usr/src/app
@@ -9,7 +9,7 @@ RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && \
    rm -f .npmrc
  
 # --------------> The production image
-FROM node:18.12.1-slim
+FROM node:20.10.0-slim
 ENV NODE_ENV production
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 USER node
