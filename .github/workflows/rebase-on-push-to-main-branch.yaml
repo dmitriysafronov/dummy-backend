@@ -14,4 +14,4 @@ jobs:
           base: main
           exclude-drafts: true
           exclude-labels: |
-            no-rebase
+            dependencies

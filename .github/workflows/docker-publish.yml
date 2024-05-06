@@ -58,11 +58,13 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
+            type=ref,event=branch,prefix=,suffix=-{{sha}}-{{date 'x'}}
             type=ref,event=pr
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=ref,event=branch,prefix=,suffix=-{{sha}}-{{date 'x'}}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.0.') && !contains(github.ref, '-') }}
+            type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') && !contains(github.ref, '-') }}
+          flavor: |
+            latest=${{ startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-') }}
 
       # Cache dependencies
       # https://github.com/actions/cache
