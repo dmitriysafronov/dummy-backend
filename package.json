@@ -4,6 +4,6 @@
   "private": true,
   "dependencies": {
     "express": "^4.19.2",
-    "winston": "^3.13.0"
+    "winston": "^3.13.1"
   }
 }
