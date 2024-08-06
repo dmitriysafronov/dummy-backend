@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.10] - 2024-08-06
+
+### 🐛 Bug Fixes
+
+- Trigger (#21)
+
 ## [0.0.9] - 2024-08-06
 
 ### 🐛 Bug Fixes
