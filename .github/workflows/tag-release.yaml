@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
 
       - name: Update release description .CHANGELOG.md
-        uses: orhun/git-cliff-action@v3.2.0
+        uses: orhun/git-cliff-action@v4
         id: changelog-release
         with:
           config: .cliff.release.toml
