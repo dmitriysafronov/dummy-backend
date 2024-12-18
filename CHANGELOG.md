@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.13] - 2024-12-18
+
+### 🚜 Refactor
+
+- Npm earlier
+- Typo & app dir
+- Versions for Dependabot
+
 ## [0.0.11] - 2024-08-27
 
 ### 🐛 Bug Fixes
