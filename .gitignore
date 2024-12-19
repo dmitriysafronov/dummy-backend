@@ -1,1 +1,7 @@
-/node_modules
+# Exclude all...
+*
+
+# ...except essential
+!/.eslintrc.json
+!/package*.json
+!/index.js
