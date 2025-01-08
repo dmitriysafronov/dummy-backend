@@ -1,5 +1,5 @@
 # --------------> The builder image
-FROM node:23.5.0 AS builder
+FROM node:23.6.0 AS builder
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
@@ -10,7 +10,7 @@ RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && \
    rm -f .npmrc
 
 # --------------> The production image
-FROM node:23.5.0-slim AS production
+FROM node:23.6.0-slim AS production
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 COPY --from=builder /usr/bin/dumb-init /usr/bin/dumb-init
