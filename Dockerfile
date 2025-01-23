@@ -1,15 +1,16 @@
-# --------------> The builder image
+# The builder image
 FROM node:23.6.0 AS builder
 ENV NODE_ENV=production
 WORKDIR /home/node/app
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
-ARG NPM_TOKEN
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends dumb-init && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 COPY package*.json ./
-RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && \
-   npm ci --omit=dev && \
-   rm -f .npmrc
+RUN --mount=type=secret,id=npmrc,target=/home/node/.npmrc \
+    npm ci --omit=dev
 
-# --------------> The production image
+# The production image
 FROM node:23.6.0-slim AS production
 ENV NODE_ENV=production
 WORKDIR /home/node/app
