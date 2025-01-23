@@ -1,5 +1,5 @@
 # The builder image
-FROM node:23.6.0 AS builder
+FROM node:23.6.1 AS builder
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 RUN apt-get update && \
@@ -11,7 +11,7 @@ RUN --mount=type=secret,id=npmrc,target=/home/node/.npmrc \
     npm ci --omit=dev
 
 # The production image
-FROM node:23.6.0-slim AS production
+FROM node:23.6.1-slim AS production
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 COPY --from=builder /usr/bin/dumb-init /usr/bin/dumb-init
