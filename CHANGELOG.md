@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.15] - 2025-01-30
+
+### 🚜 Refactor
+
+- Dockerfile mount
+
 ## [0.0.14] - 2024-12-19
 
 ### 🚜 Refactor
