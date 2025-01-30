@@ -2,12 +2,13 @@
 FROM node:23.6.1 AS builder
 ENV NODE_ENV=production
 WORKDIR /home/node/app
-RUN apt-get update && \
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=secret,id=npmrc,target=/home/node/.npmrc \
+    apt-get update && \
     apt-get install -y --no-install-recommends dumb-init && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-COPY package*.json ./
-RUN --mount=type=secret,id=npmrc,target=/home/node/.npmrc \
+    rm -rf /var/lib/apt/lists/* && \
     npm ci --omit=dev
 
 # The production image
