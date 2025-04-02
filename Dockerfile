@@ -1,5 +1,5 @@
 # The builder image
-FROM node:23.10.0 AS builder
+FROM node:23.11.0 AS builder
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 RUN --mount=type=bind,source=package.json,target=package.json \
@@ -12,7 +12,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci --omit=dev
 
 # The production image
-FROM node:23.10.0-slim AS production
+FROM node:23.11.0-slim AS production
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 COPY --from=builder /usr/bin/dumb-init /usr/bin/dumb-init
